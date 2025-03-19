@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Book;
 
+ /**
+ * @OA\Info(title="Book API", version="1.0.0")
+ */
+
+
 class BookController extends Controller
 {
     public function index(){
