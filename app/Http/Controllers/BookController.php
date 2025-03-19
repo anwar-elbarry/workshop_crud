@@ -12,6 +12,15 @@ use App\Models\Book;
 
 class BookController extends Controller
 {
+
+    /**
+ * @OA\Get(
+ *     path="/api/books",
+ *     summary="Get all books",
+ *     tags={"Books"},
+ *     @OA\Response(response="200", description="Success")
+ * )
+ */
     public function index(){
         return Book::all();
     }
