@@ -25,4 +25,18 @@ class BookController extends Controller
       
         return response()->json(['book' => $book]);
     }
+    public function update(Request $request, Book $book){
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'description' => 'required|string|max:255',
+        ]);
+
+        $book->name = $request->name;
+        $book->author = $request->author;
+        $book->description = $request->description;
+        $book->save();
+
+        return response()->json(['book' => $book]);
+    }
 }
