@@ -39,6 +39,19 @@ class BookController extends Controller
         $book = Book::findOrFail($id);
         return response()->json(['book' => $book]);
     }
+
+    /**
+ * @OA\Post(
+ *     path="/api/books",
+ *     summary="Create a new book",
+ *     tags={"Books"},
+ *     @OA\Parameter(name="name", in="query", required=true, description="Name of the book", @OA\Schema(type="string")),
+ *     @OA\Parameter(name="author", in="query", required=true, description="Author of the book", @OA\Schema(type="string")),
+ *     @OA\Parameter(name="description", in="query", required=true, description="Description of the book", @OA\Schema(type="string")),
+ *     @OA\Response(response="200", description="Success"),
+ *     @OA\Response(response="400", description="Invalid input")
+ * )
+ */
     public function store(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
