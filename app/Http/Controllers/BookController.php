@@ -10,6 +10,10 @@ class BookController extends Controller
     public function index(){
         return Book::all();
     }
+    public function show(string $id){
+        $book = Book::findOrFail($id);
+        return response()->json(['book' => $book]);
+    }
     public function store(Request $request){
         $request->validate([
             'name' => 'required|string|max:255',
