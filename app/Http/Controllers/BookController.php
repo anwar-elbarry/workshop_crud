@@ -59,14 +59,28 @@ class BookController extends Controller
             'description' => 'required|string|max:255',
         ]);
 
-            $book = Book::create([
-                'name' => $request->name,
-                'author' => $request->author,
-                'description' => $request->description
-            ]);
+        $book = Book::create([
+            'name' => $request->name,
+            'author' => $request->author,
+            'description' => $request->description
+        ]);
       
         return response()->json(['book' => $book]);
     }
+
+    /**
+ * @OA\Put(
+ *     path="/api/books/{id}",
+ *     summary="Update a book by ID",
+ *     tags={"Books"},
+ *     @OA\Parameter(name="id", in="path", required=true, description="ID of the book", @OA\Schema(type="integer")),
+ *     @OA\Parameter(name="name", in="query", required=true, description="Name of the book", @OA\Schema(type="string")),
+ *     @OA\Parameter(name="author", in="query", required=true, description="Author of the book", @OA\Schema(type="string")),
+ *     @OA\Parameter(name="description", in="query", required=true, description="Description of the book", @OA\Schema(type="string")),
+ *     @OA\Response(response="200", description="Success"),
+ *     @OA\Response(response="404", description="Book not found")
+ * )
+ */
     public function update(Request $request, Book $book){
         $request->validate([
             'name' => 'required|string|max:255',
