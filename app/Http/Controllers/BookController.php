@@ -95,6 +95,17 @@ class BookController extends Controller
 
         return response()->json(['book' => $book]);
     }
+
+    /**
+ * @OA\Delete(
+ *     path="/api/books/{id}",
+ *     summary="Delete a book by ID",
+ *     tags={"Books"},
+ *     @OA\Parameter(name="id", in="path", required=true, description="ID of the book", @OA\Schema(type="integer")),
+ *     @OA\Response(response="200", description="Success"),
+ *     @OA\Response(response="404", description="Book not found")
+ * )
+ */
     public function destroy(Book $book){
         $book->delete();
         return response()->noContent();
